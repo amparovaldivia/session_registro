@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='reg.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class=' bg-success'>
+        <h1 class="text-center">COMPARTIR RECETAS</h1>
+    </header>
+    <div class='bloque_principal d-flex'>
+        <div class="contenedor1">
+
+            {% with messages_registro = get_flashed_messages(category_filter=['datos']) %}
+            <!-- declara una variable llamada mensajes -->
+            {% if messages_registro %}
+            <!-- comprobar si hay algún mensaje -->
+            {% for error_registro in messages_registro %}
+            <!-- recorrer los mensajes -->
+            <p class="text-danger">{{ error_registro }}</p> <!-- muestra cada mensaje en una etiqueta de párrafo -->
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <form action="/" method="post" class="formulario d-flex flex-column" onsubmit="return verificar()">
+                <h2>Registro</h2>
+
+                <div class="form-group">
+                    <label for="nombre">nombre:</label>
+                    <input type="text" class="form-control" placeholder="nombre" id="nombre" name="nombre">
+                </div>
+
+                <div class="form-group">
+                    <label for="apellido">apellido:</label>
+                    <input type="text" class="form-control" placeholder="apellido" id="apellido" name="apellido">
+                </div>
+                <div class="form-group">
+                    <label for="email">email:</label>
+                    <input type="text" class="form-control" placeholder="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">password:</label>
+                    <input type="password" class="form-control" placeholder="password" id="password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="confirmar_password">Password:</label>
+                    <input type="password" class="form-control" placeholder="confirmar password" id="pwd"
+                        name="confirmar_password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">enviar</button>
+            </form>
+        </div>
+        <div class="contenedor2 d-flex flex-column">
+            {% with messages_registro = get_flashed_messages(category_filter=['log']) %}
+            <!-- declara una variable llamada mensajes -->
+            {% if messages_registro %}
+            <!-- comprobar si hay algún mensaje -->
+            {% for error_registro in messages_registro %}
+            <!-- recorrer los mensajes -->
+            <p class="text-danger">{{ error_registro }}</p> <!-- muestra cada mensaje en una etiqueta de párrafo -->
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <form action="/login" method="post" class="formulario2">
+                <h3>iniciar sesión</h3>
+                <div class="form-group">
+                    <label for="email">email:</label>
+                    <input type="text" class="form-control" placeholder="email" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" placeholder="password" id="pwd" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">entrar</button>
+
+            </form>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
